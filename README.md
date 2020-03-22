@@ -5,14 +5,6 @@ Docker image with openvpn / iptables / dnsmasq
 Everything is lock by default, only the VPN endpoint is allowed by default
 All traffic go through the VPN connection 
 
-## Instruction and Usage
-
-### Build
-
-```
-docker build -t openvpn-killswitch .
-```
-
 ### Usage
 
 #### Docker
@@ -26,7 +18,7 @@ docker run \
     -e LOCAL_NETWORK=local network subnet to allow traffic (example: 192.168.1.0/24) \
     -e OPENVPN_OPTS=extra openvpn options \
     -v path to data:/etc/openvpn/profile/ \
-    openvpn-killswitch
+    kuthz/openvpn-killswitch
 ```
 
 #### Docker-compose
