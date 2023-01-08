@@ -6,16 +6,20 @@ on:
       imageTag:
         description: 'Docker image tag'
         required: true
+        default: 'latest'
         type: string
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build
       run: docker build . --file Dockerfile --tag kuthz/openvpn-killswitch:${{ inputs.imageTag }}
     - name: Push
